@@ -1,46 +1,175 @@
-# Getting Started with Create React App
+# Real-Time Stock Analysis Dashboard 📈
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A comprehensive stock analysis platform that provides real-time insights and technical analysis for stock market data. Built with React, Spring Boot, and Apache Kafka.
 
-## Available Scripts
+## 🌟 Features
 
-In the project directory, you can run:
+### Frontend
+- Modern, responsive dashboard built with React and TypeScript
+- Beautiful UI using Material-UI with dark mode support
+- Real-time data updates and analysis
+- Interactive charts and visualizations
+- Multiple timeframe analysis (1D, 1W, 1M)
+- Technical indicators display
+- Volume analysis
+- Trend strength visualization
 
-### `npm start`
+### Backend
+- Real-time stock data processing using Kafka
+- Advanced technical analysis:
+  - Trend analysis with strength indicators
+  - Volatility calculations and risk assessment
+  - Moving averages (short and long-term)
+  - Volume analysis with trend detection
+  - Technical indicators (RSI, MACD)
+- Historical data storage and analysis
+- Rate-limited API integration with Yahoo Finance
+- Secure API endpoints with proper error handling
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🛠️ Tech Stack
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Frontend
+- React with TypeScript
+- Material-UI for component library
+- Axios for API communication
+- Recharts for data visualization
 
-### `npm test`
+### Backend
+- Spring Boot (Java)
+- Apache Kafka for real-time data streaming
+- JPA/Hibernate for data persistence
+- RESTful API architecture
+- Yahoo Finance API integration
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Database
+- PostgreSQL for historical data storage
+- In-memory caching for performance
 
-### `npm run build`
+### DevOps
+- Maven for dependency management
+- Git for version control
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
+- Java 17 or higher
+- Node.js 16 or higher
+- PostgreSQL
+- Apache Kafka
+- Maven
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/realtime-stock-pipeline.git
+cd realtime-stock-pipeline
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2. Start Kafka and Zookeeper:
+```bash
+# Start Zookeeper
+cd kafka_2.13-3.6.1
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# In a new terminal, start Kafka
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. Configure the backend:
+- Update `application.properties` with your database credentials
+- Set up your Yahoo Finance API key (if needed)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+4. Build and run the backend:
+```bash
+mvn clean install
+mvn spring-boot:run
+```
 
-## Learn More
+5. Set up the frontend:
+```bash
+cd stock-frontend
+npm install
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The application will be available at:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8080
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📊 API Endpoints
+
+### Stock Analysis
+- `GET /api/v1/analysis/trend/{symbol}` - Get trend analysis
+- `GET /api/v1/analysis/volatility/{symbol}` - Get volatility analysis
+- `GET /api/v1/analysis/moving-average/{symbol}` - Get moving averages
+- `GET /api/v1/analysis/volume-analysis/{symbol}` - Get volume analysis
+- `GET /api/v1/analysis/technical-indicators/{symbol}` - Get technical indicators
+
+### Historical Data
+- `GET /api/historical/{symbol}/recent` - Get recent prices
+- `GET /api/historical/{symbol}/range` - Get prices in date range
+- `GET /api/historical/{symbol}/statistics` - Get price statistics
+
+## 🔧 Configuration
+
+### Backend Configuration
+```properties
+# Database
+spring.datasource.url=jdbc:postgresql://localhost:5432/stockdb
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+
+# Kafka
+spring.kafka.bootstrap-servers=localhost:9092
+spring.kafka.producer.topic=stock-prices
+
+# Yahoo Finance API
+yahoo.finance.api.key=your_api_key
+```
+
+### Frontend Configuration
+```typescript
+// src/services/stockService.ts
+const API_BASE_URL = 'http://localhost:8080/api/v1';
+```
+
+## 📈 Usage
+
+1. Enter a stock symbol (e.g., AAPL, GOOGL, MSFT)
+2. Select the desired timeframe
+3. View real-time analysis including:
+   - Price trends
+   - Volume analysis
+   - Technical indicators
+   - Moving averages
+   - Volatility metrics
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Yahoo Finance API for stock data
+- Material-UI for the component library
+- Apache Kafka for real-time data streaming
+- Spring Boot team for the amazing framework
+
+## 📧 Contact
+
+Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - email@example.com
+
+<<<<<<< HEAD
+Project Link: [https://github.com/yourusername/realtime-stock-pipeline](https://github.com/yourusername/realtime-stock-pipeline) 
+=======
+Project Link: [https://github.com/yourusername/realtime-stock-pipeline](https://github.com/yourusername/realtime-stock-pipeline) 
+>>>>>>> f9289c5c026c538018d91488bb05b7ca9a075b3e
